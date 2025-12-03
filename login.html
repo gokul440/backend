@@ -1,90 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-
+    <title>Simple Job Application Form</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #fff3e0;
+            background: #e8eef3;
             font-family: Arial, sans-serif;
+            padding: 40px;
         }
 
-        header {
-            background-color: #e65100;
-            color: white;
+        h2 {
             text-align: center;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            width: 100%;
+            color: #1f4e8c;
         }
 
-        .login-box {
-            margin-top: 150px;
-            width: 300px;
-            background-color: white;
+        form {
+            max-width: 450px;
+            margin: auto;
+            background: white;
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 12px;
             box-shadow: 0 0 10px gray;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        input {
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        input, select {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #888;
+            border-radius: 8px;
         }
 
         button {
             width: 100%;
             padding: 12px;
-            background-color: #e65100;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #1f4e8c;
             color: white;
             border: none;
-            font-size: 16px;
+            border-radius: 10px;
             cursor: pointer;
-            border-radius: 6px;
         }
 
         button:hover {
-            background-color: #bf360c;
-        }
-
-        footer {
-            background-color: #e65100;
-            color: white;
-            text-align: center;
-            padding: 15px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            background-color: #163b66;
         }
     </style>
-
 </head>
+
 <body>
 
-    <header>
-        <h1>Login</h1>
-    </header>
+    <h2>Job Application Form</h2>
 
-    <div class="login-box">
-        <h2>User Login</h2>
-        <form>
-            <input type="text" placeholder="Enter Username" required>
-            <input type="password" placeholder="Enter Password" required>
-            <button type="submit">Login</button>
-        </form>
-    </div>
+    <form>
 
-    <footer>
-        <p>© 2025 MAHENDRA </p>
-    </footer>
+        <!-- 1. Name -->
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter your name" required>
+
+        <!-- 2. Email -->
+        <label>Email</label>
+        <input type="email" placeholder="Enter your email" required>
+
+        <!-- 3. Qualification -->
+        <label>Qualification</label>
+        <select required>
+            <option>Select Qualification</option>
+            <option>Bachelor's Degree</option>
+            <option>Master's Degree</option>
+            <option>Diploma</option>
+            <option>PhD</option>
+            <option>Other</option>
+        </select>
+
+        <!-- 4. Job Applying For -->
+        <label>Job Role</label>
+        <select required>
+            <option>Select Job Role</option>
+            <option>Software Developer</option>
+            <option>Data Analyst</option>
+            <option>Tester</option>
+            <option>UI/UX Designer</option>
+            <option>HR Executive</option>
+        </select>
+
+        <!-- 5. Phone -->
+        <label>Phone Number</label>
+        <input type="tel" placeholder="Enter phone number" required>
+
+        <button type="submit">Submit Application</button>
+    </form>
 
 </body>
 </html>
