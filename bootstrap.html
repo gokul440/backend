@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE Market</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+            font-family: 'Poppins', sans-serif;
+        }
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            color: #ffeb3b !important;
+            transform: scale(1.1);
+            transition: 0.3s;
+        }
+        .hero {
+            background: url('https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?auto=format&fit=crop&w=1200&q=60') center/cover no-repeat;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            background-blend-mode: darken;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            animation: fadeInDown 1.2s;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            animation: fadeInUp 1.2s;
+        }
+        .product-card {
+            transition: 0.4s;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .product-card img {
+            height: 220px;
+            object-fit: cover;
+        }
+        footer {
+            background: #212121;
+            color: #fff;
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">ELITE Market</a>
+        </div>
+    </nav>
+    <section class="hero">
+        <h1>Welcome to the Market</h1>
+    </section>
+    <div class="container my-5">
+        <h2 class="text-center mb-4 fw-bold">Products</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://i.pinimg.com/originals/27/f2/02/27f202975f0473774cd0d21067a16709.jpg" class="card-img-top" alt="Vegetables">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Vegetables</h5>
+                        <p class="card-text">Farm-fresh and organic vegetables for a healthy life.</p>
+                        <a href="#" class="btn btn-success w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://image.shutterstock.com/image-photo/daily-grocery-products-kept-on-260nw-1712451133.jpg" class="card-img-top" alt="Groceries">
+                    <div class="card-body">
+                        <h5 class="card-title">Daily Groceries</h5>
+                        <p class="card-text">Top-quality groceries for your everyday cooking.</p>
+                        <a href="#" class="btn btn-primary w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.giUlYvGmcNsdEEvhiW-VEAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="Fruits">
+                    <div class="card-body">
+                        <h5 class="card-title">Fresh Fruits</h5>
+                        <p class="card-text">Juicy and delicious fruits directly from farms.</p>
+                        <a href="#" class="btn btn-warning w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="https://tse4.mm.bing.net/th/id/OIP.giUlYvGmcNsdEEvhiW-VEAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="Fruits">
+                    <div class="card-body">
+                        <h5 class="card-title">Meat & Seafood</h5>
+                        <p class="card-text">Delicious and fresh meat.</p>
+                        <a href="#" class="btn btn-warning w-100">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="text-center">
+        <p>&copy; ELITE Market.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
