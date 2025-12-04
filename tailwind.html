@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Showroom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-r from-gray-100 to-blue-100 font-sans">
+    <nav class="bg-black text-white py-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold tracking-wide">Car Showroom</h1>
+            <ul class="flex gap-6">
+                <li><a href="#" class="hover:text-yellow-300 transition">Home</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">Cars</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">About</a></li>
+                <li><a href="#" class="hover:text-yellow-300 transition">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="relative h-96 bg-cover bg-center flex items-center justify-center text-white"
+        style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1200&q=60');">
+
+        <div class="bg-black bg-opacity-40 p-8 rounded-xl fade-in">
+            <h2 class="text-4xl font-bold mb-3">Welcome to Our Car Showroom</h2>
+            <p class="text-lg">Find your dream car with the best offers</p>
+        </div>
+    </section>
+    <h2 class="text-center text-3xl font-bold mt-10 mb-5 fade-in">Our Latest Cars</h2>
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 mb-12">
+        <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-500 fade-in">
+            <img src="https://cdn.mos.cms.futurecdn.net/Drifb4WGUoCj2gVUo2BQnG.jpg" class="w-full h-56 object-cover" alt="Car">
+            <div class="p-5">
+                <h3 class="text-2xl font-bold mb-2">BMW M5</h3>
+                <p class="text-gray-600 mb-4">A luxury sedan with powerful performance and style.</p>
+                <button
+                    class="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">View Details</button>
+            </div>
+        </div>
+        <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-500 fade-in">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7r3GDMttTh44Alxtkt3CUBwLxzGFv96rdBw&s" class="w-full h-56 object-cover" alt="Car">
+            <div class="p-5">
+                <h3 class="text-2xl font-bold mb-2">Audi R8</h3>
+                <p class="text-gray-600 mb-4">A premium sports car designed for speed and luxury.</p>
+                <button
+                    class="w-full bg-red-600 text-white py-2 rounded-xl hover:bg-red-700 transition">View Details</button>
+            </div>
+        </div>
+        <div
+            class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-500 fade-in">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpx0bT3uzl2HsbjzI6q0MEM8OeKRdRWHwEpw&s" class="w-full h-56 object-cover" alt="Car">
+            <div class="p-5">
+                <h3 class="text-2xl font-bold mb-2">Mercedes AMG GT</h3>
+                <p class="text-gray-600 mb-4">A perfect blend of performance and elegance.</p>
+                <button
+                    class="w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition">View Details</button>
+            </div>
+        </div>
+
+    </div>
+    <footer class="bg-black text-white text-center py-5 mt-8">
+        <p>&copy; 2025 Car Showroom</p>
+    </footer>
+
+</body>
+</html>
