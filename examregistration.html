@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #aaa;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        button {
+            background: green;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: darkgreen;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Exam Registration Form</h2>
+    <form id="examForm" onsubmit="return validateForm()">
+        <label>Full Name</label>
+        <input type="text" id="name">
+        <p class="error" id="nameError"></p>
+        <label>Email</label>
+        <input type="text" id="email">
+        <p class="error" id="emailError"></p>
+        <label>Phone Number</label>
+        <input type="text" id="phone">
+        <p class="error" id="phoneError"></p>
+        <label>Date of Birth</label>
+        <input type="date" id="dob">
+        <p class="error" id="dobError"></p>
+        <label>Gender</label>
+        <select id="gender">
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+        <label>Exam Type</label>
+        <select id="examType">
+            <option value="">Select Exam</option>
+            <option>Engineering</option>
+            <option>Medical</option>
+            <option>Law</option>
+            <option>Banking</option>
+        </select>
+        <label>Address</label>
+        <textarea id="address"></textarea>
+        <label>Password</label>
+        <input type="password" id="password">
+        <p class="error" id="passwordError"></p>
+        <button type="submit">Register</button>
+    </form>
+    <script>
+        function validateForm() {
+            let valid = true;
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let dob = document.getElementById("dob").value;
+            let password = document.getElementById("password").value.trim();
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("phoneError").innerHTML = "";
+            document.getElementById("dobError").innerHTML = "";
+            document.getElementById("passwordError").innerHTML = "";
+            if (name.length < 3) {
+                document.getElementById("nameError").innerHTML = "Name must be at least 3 characters!";
+                valid = false;
+            }
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                document.getElementById("emailError").innerHTML = "Enter a valid email!";
+                valid = false;
+            }
+            if (phone.length != 10 || isNaN(phone)) {
+                document.getElementById("phoneError").innerHTML = "Phone must be 10 digits!";
+                valid = false;
+            }
+            let birthYear = new Date(dob).getFullYear();
+            let currentYear = new Date().getFullYear();
+            let age = currentYear - birthYear;
+
+            if (age < 18) {
+                document.getElementById("dobError").innerHTML = "You must be at least 18 years old!";
+                valid = false;
+            }
+            if (password.length < 6) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 6 characters!";
+                valid = false;
+            }
+
+            return valid;
+        }
+    </script>
+
+</body>
+</html>

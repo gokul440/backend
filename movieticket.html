@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Ticket Booking</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#eef3f7; padding:20px; }
+    .box { max-width:700px; margin:auto; background:white; padding:20px; border-radius:8px; box-shadow:0 5px 18px rgba(0,0,0,0.12); }
+    h2 { margin-top:0; }
+    label { display:block; margin:10px 0 4px; font-weight:600; }
+    input, select { width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; }
+    .error { color:red; font-size:14px; }
+    button { margin-top:15px; padding:10px 20px; background:#0077ff; border:none; color:white; border-radius:6px; cursor:pointer; }
+    .success { background:#e6ffee; padding:10px; margin-top:15px; border-radius:6px; border:1px solid green; }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>🎟️ Movie Ticket Booking Form</h2>
+
+  <form id="movieForm" novalidate>
+
+    <label>Full Name *</label>
+    <input type="text" id="name">
+    <div id="nameError" class="error"></div>
+
+    <label>Email *</label>
+    <input type="email" id="email">
+    <div id="emailError" class="error"></div>
+
+    <label>Mobile Number *</label>
+    <input type="text" id="mobile" placeholder="10-digit number">
+    <div id="mobileError" class="error"></div>
+
+    <label>Select Movie *</label>
+    <select id="movie">
+      <option value="">Choose</option>
+      <option>Deadpool 3</option>
+      <option>Joker 2</option>
+      <option>Pushpa 2</option>
+      <option>Avengers: Secret Wars</option>
+    </select>
+    <div id="movieError" class="error"></div>
+
+    <label>Show Date *</label>
+    <input type="date" id="date">
+    <div id="dateError" class="error"></div>
+
+    <label>Show Time *</label>
+    <select id="time">
+      <option value="">Select</option>
+      <option>10:00 AM</option>
+      <option>1:30 PM</option>
+      <option>4:00 PM</option>
+      <option>7:00 PM</option>
+      <option>10:30 PM</option>
+    </select>
+    <div id="timeError" class="error"></div>
+
+    <label>Number of Tickets (1–10) *</label>
+    <input type="number" id="tickets" min="1" max="10">
+    <div id="ticketsError" class="error"></div>
+
+    <label>Seat Type *</label>
+    <select id="seat">
+      <option value="">Select</option>
+      <option>Standard</option>
+      <option>Premium</option>
+      <option>Recliner</option>
+    </select>
+    <div id="seatError" class="error"></div>
+
+    <button type="submit">Book Now</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+
+  document.getElementById("movieForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    clearErrors();
+
+    let name = $("name").value.trim();
+    let email = $("email").value.trim();
+    let mobile = $("mobile").value.trim();
+    let movie = $("movie").value;
+    let date = $("date").value;
+    let time = $("time").value;
+    let tickets = $("tickets").value;
+    let seat = $("seat").value;
+
+    let valid = true;
+    if (name.length < 3) {
+      $("nameError").innerText = "Please enter your full name (min 3 characters).";
+      valid = false;
+    }
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      $("emailError").innerText = "Enter a valid email.";
+      valid = false;
+    }
+    if (!/^\d{10}$/.test(mobile)) {
+      $("mobileError").innerText = "Mobile number must be 10 digits.";
+      valid = false;
+    }
+    if (!movie) {
+      $("movieError").innerText = "Please select a movie.";
+      valid = false;
+    }
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    let selectedDate = new Date(date);
+    if (!date || selectedDate < today) {
+      $("dateError").innerText = "Select a valid future date.";
+      valid = false;
+    }
+    if (!time) {
+      $("timeError").innerText = "Select show time.";
+      valid = false;
+    }
+    if (!(tickets >= 1 && tickets <= 10)) {
+      $("ticketsError").innerText = "Enter ticket count between 1 and 10.";
+      valid = false;
+    }
+    if (!seat) {
+      $("seatError").innerText = "Select seat type.";
+      valid = false;
+    }
+
+    if (valid) {
+      $("result").innerHTML = `
+        <div class="success">
+          <h3>🎉 Booking Confirmed!</h3>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Movie:</strong> ${movie}</p>
+          <p><strong>Date:</strong> ${date}</p>
+          <p><strong>Time:</strong> ${time}</p>
+          <p><strong>Tickets:</strong> ${tickets}</p>
+          <p><strong>Seat Type:</strong> ${seat}</p>
+        </div>
+      `;
+      document.getElementById("movieForm").reset();
+    }
+  });
+
+  function clearErrors() {
+    document.querySelectorAll(".error").forEach(e => e.innerText = "");
+    $("result").innerHTML = "";
+  }
+</script>
+
+</body>
+</html>

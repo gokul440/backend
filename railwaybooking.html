@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Railway Ticket Booking</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #eef3f7; padding: 20px; }
+  .box { max-width: 750px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.12); }
+  h2 { margin-top: 0; }
+  label { display: block; margin: 10px 0 4px; font-weight: bold; }
+  input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+  .error { color: red; font-size: 14px; }
+  button { margin-top: 15px; padding: 10px; background: #0066ff; border: none; color: white; border-radius: 6px; cursor: pointer; }
+  .success { background: #e6ffee; padding: 10px; margin-top: 15px; border: 1px solid green; border-radius: 6px; }
+</style>
+</head>
+<body>
+<div class="box">
+<h2>🚆 Railway Ticket Booking Form</h2>
+<form id="railForm" novalidate>
+  <label>Full Name *</label>
+  <input type="text" id="name">
+  <div id="nameError" class="error"></div>
+  <label>Age *</label>
+  <input type="number" id="age">
+  <div id="ageError" class="error"></div>
+  <label>Email *</label>
+  <input type="email" id="email">
+  <div id="emailError" class="error"></div>
+  <label>Mobile Number *</label>
+  <input type="text" id="mobile" placeholder="10-digit number">
+  <div id="mobileError" class="error"></div>
+  <label>From Station *</label>
+  <input type="text" id="from">
+  <div id="fromError" class="error"></div>
+  <label>To Station *</label>
+  <input type="text" id="to">
+  <div id="toError" class="error"></div>
+  <label>Travel Date *</label>
+  <input type="date" id="date">
+  <div id="dateError" class="error"></div>
+  <label>Class Type *</label>
+  <select id="classType">
+    <option value="">Select Class</option>
+    <option>General</option>
+    <option>Sleeper (SL)</option>
+    <option>AC 3 Tier</option>
+    <option>AC 2 Tier</option>
+    <option>AC 1 Tier</option>
+  </select>
+  <div id="classError" class="error"></div>
+  <label>Number of Tickets *</label>
+  <input type="number" id="tickets" min="1" max="6">
+  <div id="ticketsError" class="error"></div>
+  <button type="submit">Book Ticket</button>
+</form>
+<div id="result"></div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+document.getElementById("railForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  clearErrors();
+  let name = $("name").value.trim();
+  let age = $("age").value;
+  let email = $("email").value.trim();
+  let mobile = $("mobile").value.trim();
+  let from = $("from").value.trim();
+  let to = $("to").value.trim();
+  let date = $("date").value;
+  let classType = $("classType").value;
+  let tickets = $("tickets").value;
+  let valid = true;
+  if (name.length < 3) {
+    $("nameError").innerText = "Enter full name (min 3 characters).";
+    valid = false;
+  }
+  if (!(age >= 5 && age <= 100)) {
+    $("ageError").innerText = "Enter valid age (5 to 100).";
+    valid = false;
+  }
+  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+    $("emailError").innerText = "Enter valid email.";
+    valid = false;
+  }
+  if (!/^\d{10}$/.test(mobile)) {
+    $("mobileError").innerText = "Mobile number must be 10 digits.";
+    valid = false;
+  }
+  if (!from) {
+    $("fromError").innerText = "Enter departure station.";
+    valid = false;
+  }
+  if (!to) {
+    $("toError").innerText = "Enter destination station.";
+    valid = false;
+  }
+  let today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let selectedDate = new Date(date);
+  if (!date || selectedDate < today) {
+    $("dateError").innerText = "Choose a valid future date.";
+    valid = false;
+  }
+  if (!classType) {
+    $("classError").innerText = "Select travel class.";
+    valid = false;
+  }
+  if (!(tickets >= 1 && tickets <= 6)) {
+    $("ticketsError").innerText = "You can book 1 to 6 tickets.";
+    valid = false;
+  }
+  if (valid) {
+    $("result").innerHTML = `
+      <div class="success">
+        <h3>🎉 Railway Ticket Booked Successfully!</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>From:</strong> ${from} → <strong>To:</strong> ${to}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Class:</strong> ${classType}</p>
+        <p><strong>Tickets:</strong> ${tickets}</p>
+      </div>
+    `;
+    document.getElementById("railForm").reset();
+  }
+});
+function clearErrors() {
+  document.querySelectorAll(".error").forEach(el => el.innerText = "");
+  $("result").innerHTML = "";
+}
+</script>
+</body>
+</html>
