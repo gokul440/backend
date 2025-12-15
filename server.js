@@ -9,6 +9,7 @@ import expenseRoutes from './routes/expenses.js';
 import './models/User.js';
 import './models/Group.js';
 import './models/Expense.js';
+import './models/UserBalance.js';
 
 dotenv.config();
 
@@ -21,13 +22,13 @@ app.use(auth);
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('✅ Connected to MongoDB Atlas');
     console.log('Database:', mongoose.connection.name);
   })
   .catch(err => {
-    console.error('MongoDB connection error:', err.message);
-    console.log('Server running in demo mode.');
-    process.exit(1);
+    console.error('❌ MongoDB connection error:', err.message);
+    console.log('Server running without MongoDB.');
+    // Don't exit, continue running
   });
 
 mongoose.connection.on('error', (err) => {

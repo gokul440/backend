@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const expenseSchema = new mongoose.Schema({
-  groupId: { type: mongoose.Schema.Types.ObjectId, ref: 'Group', required: true },
+  groupId: { type: String, default: 'default' },
   description: { type: String, required: true },
   amount: { type: Number, required: true },
   paidBy: { type: String, required: true },

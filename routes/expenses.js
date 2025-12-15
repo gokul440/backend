@@ -1,30 +1,49 @@
 import express from 'express';
 import Expense from '../models/Expense.js';
 import Group from '../models/Group.js';
+import UserBalance from '../models/UserBalance.js';
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { groupId, description, amount, paidBy } = req.body;
-    
-    const group = await Group.findById(groupId);
-    if (!group) return res.status(404).json({ error: 'Group not found' });
+    const { groupId = 'default', description, amount, paidBy, participants } = req.body;
+    console.log('ℹ️ Saving expense:', { groupId, description, amount, paidBy, participants });
     
     const expense = new Expense({
       groupId,
       description,
       amount,
       paidBy,
-      participants: group.participants
+      participants
     });
     
     await expense.save();
+    console.log('✅ Expense saved to MongoDB');
+    
+    await updateUserBalances(participants, amount, paidBy);
+    console.log('✅ Balances updated');
+    
     res.status(201).json(expense);
   } catch (error) {
+    console.error('❌ Error saving expense:', error.message);
     res.status(400).json({ error: error.message });
   }
 });
+
+async function updateUserBalances(participants, amount, paidBy) {
+  const share = amount / participants.length;
+  
+  for (const participant of participants) {
+    const balanceChange = participant === paidBy ? amount - share : -share;
+    
+    await UserBalance.findOneAndUpdate(
+      { username: participant },
+      { $inc: { balance: balanceChange } },
+      { upsert: true, new: true }
+    );
+  }
+}
 
 router.get('/group/:groupId', async (req, res) => {
   try {
